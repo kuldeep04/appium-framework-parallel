@@ -1,0 +1,23 @@
+{
+  "appPackage": "io.appium.android.apis",
+  "appActivity": "io.appium.android.apis.ApiDemos",
+  "app": "src/main/resources/apps/ApiDemos-debug.apk",
+  "devices": [
+    {
+      "automationName": "UiAutomator2",
+      "udid": "emulator-5554",
+      "platformName": "Android",
+      "deviceName": "Pixel 6a",
+      "systemPort": "8100",
+      "platformVersion": "16"
+    },
+    {
+      "automationName": "UiAutomator2",
+      "udid": "emulator-5556",
+      "platformName": "Android",
+      "deviceName": "Pixel 9",
+      "systemPort": "8101",
+      "platformVersion": "16"
+    }
+  ]
+}

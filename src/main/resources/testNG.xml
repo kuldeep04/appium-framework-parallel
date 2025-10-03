@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ParallelTestSuite" parallel="tests" thread-count="2">
+    <test name="AndroidTest1">
+        <classes>
+            <class name="org.AutomateMobile.tests.PlayStoreLoginTest"/>
+        </classes>
+    </test>
+    <test name="AndroidTest2">
+        <classes>
+            <class name="org.AutomateMobile.tests.PlayStoreLoginTest2"/>
+        </classes>
+    </test>
+</suite>
