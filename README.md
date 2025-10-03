@@ -37,15 +37,15 @@ Before setting up the project, ensure you have the following installed:
    npm install -g appium-doctor
    appium-doctor
    
-   6. Platform-Specific Requirements
-         For Android:
-         Android SDK
-          Set ANDROID_HOME environment variable
-          Ensure platform-tools and tools are in your PATH
-          Install required platform versions
-        For iOS (macOS only):
-          Xcode (from Mac App Store)
-          Xcode Command Line Tools
-          Carthage (if required by Appium)
-       ```bash
-       brew install carthage
+6. Platform-Specific Requirements
+      For Android:
+      Android SDK
+       Set ANDROID_HOME environment variable
+       Ensure platform-tools and tools are in your PATH
+       Install required platform versions
+     For iOS (macOS only):
+       Xcode (from Mac App Store)
+       Xcode Command Line Tools
+       Carthage (if required by Appium)
+    ```bash
+    brew install carthage
