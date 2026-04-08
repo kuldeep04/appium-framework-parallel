@@ -1,6 +1,5 @@
 package org.AutomateMobile.driverManager;
 
-import io.appium.java_client.AppiumDriver;
 import org.AutomateMobile.driverManager.androidDriver.AndroidDriverFactory;
 import org.AutomateMobile.driverManager.iOSDriver.IOSDriverFactory;
 
@@ -8,17 +7,16 @@ import java.io.IOException;
 
 public class DriverManager {
 
-    public void initializeDriver() throws IOException {
+    public void initializeDriver(int index) throws IOException {
         DriverFactory factory;
         String platform = System.getProperty("platform");
         if(platform.equalsIgnoreCase("Android")){
-           factory =  new AndroidDriverFactory();
+           factory =  new AndroidDriverFactory(index);
         } else if (platform.equalsIgnoreCase("ios")) {
             factory = new IOSDriverFactory();
         }else {
             throw new IllegalArgumentException("Invalid Platform"+ platform);
         }
-        AppiumDriver driver = factory.createDriver();
-        AppDriver.getInstance().setDriver(driver);
+        factory.createDriver();
     }
 }

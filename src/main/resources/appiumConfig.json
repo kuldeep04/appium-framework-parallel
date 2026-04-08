@@ -1,6 +1,7 @@
 {
   "ipAddress": "127.0.0.1",
- "setUiautomator2ServerLaunchTimeout": 10000,
-  "uiautomator2ServerInstallTimeout": 10000,
-  "adbExecTimeout": 10000
+ "setUiautomator2ServerLaunchTimeout": 60000,
+  "uiautomator2ServerInstallTimeout": 60000,
+  "adbExecTimeout": 60000 ,
+  "appiumPort": 4723
 }

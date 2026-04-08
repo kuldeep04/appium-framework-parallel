@@ -1,35 +1,32 @@
 package org.AutomateMobile.baseTest;
 
-import io.appium.java_client.AppiumDriver;
 import org.AutomateMobile.driverManager.AppDriver;
 import org.AutomateMobile.driverManager.DriverManager;
-import org.AutomateMobile.driverManager.androidDriver.AndroidDriverFactory;
 import org.testng.annotations.*;
 
 import java.io.IOException;
-
+import static org.AutomateMobile.driverManager.AppDriver.getDriver;
 
 
 public class BaseTest {
 
-    protected AndroidDriverFactory androidDriverManager;
-    public static AppiumDriver driver;
+    public BaseTest(){}
 
-    public BaseTest(){
-        this.androidDriverManager = new AndroidDriverFactory();
-    }
-
+    @Parameters({"deviceIndex"})
     @BeforeTest
-    public void setup() throws IOException {
+    public void setup(int index) throws IOException {
         DriverManager driverManager = new DriverManager();
-        driverManager.initializeDriver();
-        driver = AppDriver.getInstance().getDriver();
+        driverManager.initializeDriver(index);
     }
 
     @AfterTest
     public void cleanUp(){
-        if(driver != null){
-            driver.quit();
+        if(getDriver() != null){
+            getDriver().quit();
+        }
+
+        if(AppDriver.getService() != null){
+            AppDriver.getService().stop();
         }
     }
 

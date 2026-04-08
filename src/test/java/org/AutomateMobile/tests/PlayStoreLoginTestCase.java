@@ -7,13 +7,12 @@ import org.testng.annotations.Test;
 
 import static org.AutomateMobile.driverManager.AppDriver.getDriver;
 
-public class PlayStoreLoginTest extends BaseTest {
+public class PlayStoreLoginTestCase extends BaseTest {
 
     @Test
     public void testPlayStoreLogin(){
         HomePage gpsHomePage = new HomePage(getDriver());
         Assert.assertTrue(gpsHomePage.isHomePageDisplayed(), "Home page is not displayed");
     }
-
 
 }

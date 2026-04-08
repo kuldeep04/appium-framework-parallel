@@ -1,29 +1,29 @@
 package org.AutomateMobile.driverManager;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
 
 public class AppDriver {
 
-    private static AppDriver instance = null;
-    private final ThreadLocal<AppiumDriver> driver = new ThreadLocal<>();
-
     private AppDriver(){}
 
-    public static synchronized AppDriver getInstance(){
-        if(instance == null){
-            instance = new AppDriver();
-        }
-        return instance;
-    }
+    private static final ThreadLocal<AppiumDriver> driver = new ThreadLocal<>();
+    private static final ThreadLocal<AppiumDriverLocalService> service = new ThreadLocal<>();
 
-    public synchronized void setDriver(AppiumDriver driver){
-        if(driver == null){
-            throw new IllegalArgumentException("Driver can not be null");
-        }
-        this.driver.set(driver);
-    }
-
-    public synchronized AppiumDriver getDriver(){
+    public static AppiumDriver getDriver() {
         return driver.get();
     }
+
+    public static void setDriver(AppiumDriver d) {
+        driver.set(d);
+    }
+
+    public static void setService(AppiumDriverLocalService s) {
+        service.set(s);
+    }
+
+    public static AppiumDriverLocalService getService() {
+        return service.get();
+    }
+
 }

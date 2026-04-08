@@ -15,5 +15,6 @@ public class AppiumConfig {
     private Integer setUiautomator2ServerLaunchTimeout;
     private Integer uiautomator2ServerInstallTimeout;
     private Integer adbExecTimeout;
+    private Integer appiumPort;
 
 }

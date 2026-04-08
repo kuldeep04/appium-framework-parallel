@@ -7,17 +7,14 @@
       "automationName": "UiAutomator2",
       "udid": "emulator-5554",
       "platformName": "Android",
-      "deviceName": "Pixel 6a",
-      "systemPort": "8100",
-      "platformVersion": "16"
+      "systemPort": "8201"
     },
     {
       "automationName": "UiAutomator2",
       "udid": "emulator-5556",
       "platformName": "Android",
-      "deviceName": "Pixel 9",
-      "systemPort": "8101",
-      "platformVersion": "16"
+      "systemPort": "8202"
     }
+
   ]
 }

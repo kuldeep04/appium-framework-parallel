@@ -4,42 +4,24 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import lombok.Getter;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import static org.AutomateMobile.Utils.JsonUtils.getAppiumConfig;
 
 @Getter
 public class AppiumServerFactory {
 
-    private static AppiumServerFactory instance;
-    private final Map<String, AppiumDriverLocalService> servers;
-    private final int port;
-    private final String udId;
+    public AppiumServerFactory(){}
 
-    private AppiumServerFactory(int port, String udId){
-        this.servers = new ConcurrentHashMap<>();
-        this.port = port;
-        this.udId= udId;
-    }
+    public static AppiumDriverLocalService initiateAppiumServer() throws IOException {
+        int port = checkAvailablePorts(getAppiumConfig().getAppiumPort());
 
-    public static synchronized AppiumServerFactory getInstance(int port, String udId){
-        if(instance == null){
-           instance = new AppiumServerFactory(port, udId);
+        if (AppDriver.getService() != null && AppDriver.getService().isRunning()) {
+             return AppDriver.getService();
         }
-        return instance;
-    }
 
-    public Map<String, AppiumDriverLocalService> getServer() {
-        return servers;
-    }
-
-
-    public synchronized void initiateAppiumServer() throws IOException {
         try {
             AppiumServiceBuilder builder = new AppiumServiceBuilder()
                     .withIPAddress(getAppiumConfig().getIpAddress())
@@ -48,16 +30,20 @@ public class AppiumServerFactory {
                     .withLogFile(new File("./appium.log"));
             AppiumDriverLocalService service = AppiumDriverLocalService.buildService(builder);
             service.start();
-            if (service.isRunning()) {
-                servers.put(udId, service);
-                System.out.println("Appium Service Started at Port number " + port + " and for UDID" +udId);
+
+            if (!service.isRunning()) {
+                throw new RuntimeException("Appium server failed to start on port: " + port);
             }
+
+            System.out.println("✅ Appium Service Started on port: " + port);
+            return service;
+
         }catch (Exception e){
             throw new RuntimeException("Failed to create Appium server instance "+e.getMessage());
         }
     }
 
-    public synchronized int checkAvailablePorts(int startPort) throws IOException {
+    public static int checkAvailablePorts(int startPort) throws IOException {
         int port = startPort;
         while (port < 4799) {
             try (ServerSocket serverSocket = new ServerSocket(port)) {
