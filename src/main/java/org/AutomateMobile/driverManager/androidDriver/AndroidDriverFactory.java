@@ -1,12 +1,11 @@
 package org.AutomateMobile.driverManager.androidDriver;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import org.AutomateMobile.driverManager.AppDriver;
-import org.AutomateMobile.driverManager.DriverFactory;
 import org.AutomateMobile.driverManager.AppiumServerFactory;
+import org.AutomateMobile.driverManager.DriverFactory;
 import org.AutomateMobile.dto.AndroidDeviceInfo;
 import org.AutomateMobile.dto.AppiumConfig;
 
@@ -18,30 +17,23 @@ import static org.AutomateMobile.Utils.JsonUtils.getAppiumConfig;
 
 public class AndroidDriverFactory implements DriverFactory {
 
-    private final int deviceIndex;
+    private final AndroidDeviceInfo.Device device;
 
-    public AndroidDriverFactory(int index) {
-        this.deviceIndex = index;
-
+    public AndroidDriverFactory(AndroidDeviceInfo.Device device) {
+        this.device = device;
     }
 
     @Override
-    public AppiumDriver createDriver() throws IOException {
-
-        AndroidDeviceInfo.Device device = getAndroidDeviceInfo().getDevices().get(deviceIndex);
-            try {
-                UiAutomator2Options options = getUiAutomator2Options(device);
-                AppiumDriverLocalService appiumDriverLocalService = AppiumServerFactory.initiateAppiumServer();
-                AppDriver.setService(appiumDriverLocalService);
-                AppDriver.setDriver(new AndroidDriver(appiumDriverLocalService.getUrl(), options));
-
-            } catch (Exception e) {
-                throw new RuntimeException("Failed to create Android driver " + e.getMessage());
-            }
-
-        return null;
+    public void createDriver() {
+        try {
+            UiAutomator2Options options = getUiAutomator2Options(device);
+            AppiumDriverLocalService service = AppiumServerFactory.initiateAppiumServer();
+            AppDriver.setService(service);
+            AppDriver.setDriver(new AndroidDriver(AppDriver.getService().getUrl(), options));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create Android driver " + e.getMessage());
+        }
     }
-
 
     private static UiAutomator2Options getUiAutomator2Options(AndroidDeviceInfo.Device config) throws IOException {
         AndroidDeviceInfo androidDeviceInfo = new AndroidDeviceInfo();

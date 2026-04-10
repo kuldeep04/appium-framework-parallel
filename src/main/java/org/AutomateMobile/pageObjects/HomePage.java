@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 
 public class HomePage {
 
-    private AppiumDriver driver;
+    private final AppiumDriver driver;
 
     public HomePage(AppiumDriver driver){
         this.driver = driver;

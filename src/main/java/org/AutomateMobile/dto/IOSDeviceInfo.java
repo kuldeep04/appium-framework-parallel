@@ -14,6 +14,7 @@ public class IOSDeviceInfo {
     private String bundleId;
     private String xcodeOrgId;
     private String xcodeSigningId;
+    private String appPath;
     private List<Device> devices;
 
     @Data
@@ -26,6 +27,5 @@ public class IOSDeviceInfo {
         private String deviceName;
         private String webkitDebugProxyPort;
         private String wdaLocalPort;
-        private String appPath;
     }
 }

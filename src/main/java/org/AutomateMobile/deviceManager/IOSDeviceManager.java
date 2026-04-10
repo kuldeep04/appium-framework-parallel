@@ -14,4 +14,10 @@ public class IOSDeviceManager implements ConfigManager {
             ).findFirst().orElseThrow(() -> new IllegalArgumentException("Device not found with deviceId:  "+ deviceId));
        return (T) deviceInfo;
     }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getDeviceDetails() throws IOException {
+        return (T) getIosDeviceInfo().getDevices();
+    }
 }

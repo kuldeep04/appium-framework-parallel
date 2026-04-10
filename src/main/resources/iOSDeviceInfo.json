@@ -2,14 +2,14 @@
   "bundleId": "com.example.myiosapp",
   "xcodeOrgId": "ABCD1234XY",
   "xcodeSigningId": "iPhone Developer",
+  "appPath": "src/main/resources/apps/TestApp.app.zip",
   "devices": [
     {
       "automationName": "XCUITest",
       "udid": "00008110-001C355A0E82801E",
       "platformName": "iOS",
       "deviceName": "iPhone 14",
-      "portNumber": "",
-      "appPath": ""
+      "wdaLocalPort": ""
     },
     {
       "automationName": "XCUITest",
@@ -17,8 +17,7 @@
       "platformName": "iOS",
       "deviceName": "iPhone 13 Pro",
       "webkitDebugProxyPort": "",
-      "wdaLocalPort": "",
-      "appPath": ""
+      "wdaLocalPort": ""
     }
   ]
 }

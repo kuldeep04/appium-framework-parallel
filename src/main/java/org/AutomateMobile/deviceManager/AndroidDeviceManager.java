@@ -16,4 +16,10 @@ public class AndroidDeviceManager implements ConfigManager {
                 .orElseThrow(() -> new IllegalArgumentException("Device not found with udid: " + udId));
         return (T) deviceInfo;
     }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getDeviceDetails() throws IOException {
+        return (T) getAndroidDeviceInfo().getDevices();
+    }
 }

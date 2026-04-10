@@ -15,5 +15,19 @@ public class PlayStoreLoginTest extends BaseTest {
         Assert.assertTrue(gpsHomePage.isHomePageDisplayed(), "Home page is not displayed");
     }
 
+    @Test
+    public void testPlayStoreLogin1(){
+        HomePage gpsHomePage = new HomePage(getDriver());
+        Assert.assertTrue(gpsHomePage.isHomePageDisplayed(), "Home page is not displayed");
+    }
+
+
+    @Test
+    public void testPlayStoreLogin2(){
+        HomePage gpsHomePage = new HomePage(getDriver());
+        Assert.assertTrue(gpsHomePage.isHomePageDisplayed(), "Home page is not displayed");
+    }
+
+
 
 }

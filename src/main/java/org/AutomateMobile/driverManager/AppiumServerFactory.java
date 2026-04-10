@@ -4,6 +4,8 @@ import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
 import lombok.Getter;
+import org.AutomateMobile.Utils.LoggerUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -13,13 +15,14 @@ import static org.AutomateMobile.Utils.JsonUtils.getAppiumConfig;
 @Getter
 public class AppiumServerFactory {
 
-    public AppiumServerFactory(){}
+    public AppiumServerFactory() {
+    }
 
     public static AppiumDriverLocalService initiateAppiumServer() throws IOException {
         int port = checkAvailablePorts(getAppiumConfig().getAppiumPort());
 
         if (AppDriver.getService() != null && AppDriver.getService().isRunning()) {
-             return AppDriver.getService();
+            return AppDriver.getService();
         }
 
         try {
@@ -27,7 +30,7 @@ public class AppiumServerFactory {
                     .withIPAddress(getAppiumConfig().getIpAddress())
                     .usingPort(port)
                     .withArgument(GeneralServerFlag.RELAXED_SECURITY)
-                    .withLogFile(new File("./appium.log"));
+                    .withLogFile(new File("./target/logs/appium.log"));
             AppiumDriverLocalService service = AppiumDriverLocalService.buildService(builder);
             service.start();
 
@@ -35,11 +38,11 @@ public class AppiumServerFactory {
                 throw new RuntimeException("Appium server failed to start on port: " + port);
             }
 
-            System.out.println("✅ Appium Service Started on port: " + port);
+            LoggerUtils.info("✅ Appium Service Started on port: " + port);
             return service;
 
-        }catch (Exception e){
-            throw new RuntimeException("Failed to create Appium server instance "+e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create Appium server instance " + e.getMessage());
         }
     }
 
