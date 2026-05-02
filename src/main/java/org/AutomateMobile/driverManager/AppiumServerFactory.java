@@ -38,7 +38,7 @@ public class AppiumServerFactory {
                 throw new RuntimeException("Appium server failed to start on port: " + port);
             }
 
-            LoggerUtils.info("✅ Appium Service Started on port: " + port);
+            LoggerUtils.info("Appium Service Started on port: " + port);
             return service;
 
         } catch (Exception e) {

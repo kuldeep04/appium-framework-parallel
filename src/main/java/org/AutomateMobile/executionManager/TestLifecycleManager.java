@@ -1,16 +1,15 @@
 package org.AutomateMobile.executionManager;
+
 import org.AutomateMobile.Utils.LoggerUtils;
 import org.AutomateMobile.driverManager.AppDriver;
 import org.testng.annotations.*;
 
 import java.io.IOException;
 
-import static org.AutomateMobile.driverManager.AppiumServerFactory.initiateAppiumServer;
-
 public abstract class TestLifecycleManager extends LoggerUtils {
 
     @BeforeSuite
-    public void beforeSuiteSetUp() throws IOException {
+    public void beforeSuiteSetUp() {
         log.info("Starting Suite Execution");
     }
 
